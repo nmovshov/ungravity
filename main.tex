@@ -1,0 +1,43 @@
+%https://journals.aas.org/aastexguide/
+\documentclass[twocolumn,trackchanges]{aastex62}
+% aastex styles include preprint, manuscript, twocolumn, and modern (by DFM) and
+% more. aastex 6 advanced features include trackchanges,
+
+%\turnoffedit
+
+% Additional packages not loaded by class, USE SPARINGLY!
+\usepackage{amsmath}
+\usepackage[all]{hypcap}
+
+% Options to implicitly loaded packages
+\graphicspath{{figures/}}
+\hypersetup{
+    pdfcreator={Naor Movshovitz},
+}
+
+% Silence some nuisance warnings during prep
+\usepackage{silence}
+\WarningFilter[pdftoc]{hyperref}{Token not allowed in a PDF string}
+\WarningFilter[rerun]{rerunfilecheck}{}
+\WarningFilter[labels]{latex}{Label(s) may have changed.}
+\WarningFilter[sfloat]{latex}{A float is stuck}
+\WarningFilter[dfloat]{revtex4-1}{Deferred float stuck}
+\ActivateWarningFilters[pdftoc,rerun,labels,sfloat,dfloat]
+
+\begin{document}
+
+\input{./commands}
+\input{./titleauthors}
+\input{./abstract}
+\input{./keywords}
+\input{./intro}
+\input{./method}
+\input{./results}
+\input{./discussion}
+\input{./thanks}
+%\appendix
+%\input{./some_appendix}
+
+\bibliographystyle{aasjournal} % aasjournal.bst, nice!
+\bibliography{library}
+\end{document}

@@ -1,0 +1,12 @@
+# latex temp files and changing targets
+main.pdf
+*.aux
+*.bbl
+*.log
+*.blg
+*.synctex.gz
+
+# temp ignore .fig and .png files b/c they are large
+figures/*.fig
+figures/*.png
+old_figures/
