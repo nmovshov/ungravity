@@ -9,4 +9,3 @@ main.pdf
 # temp ignore .fig and .png files b/c they are large
 figures/*.fig
 figures/*.png
-old_figures/
