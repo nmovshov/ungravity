@@ -1,3 +1,12 @@
+% Silence some nuisance warnings during prep
+\RequirePackage{silence}
+\WarningFilter[pdftoc]{hyperref}{Token not allowed in a PDF string}
+\WarningFilter[rerun]{rerunfilecheck}{}
+\WarningFilter[labels]{latex}{Label(s) may have changed.}
+\WarningFilter[sfloat]{latex}{A float is stuck}
+\WarningFilter[dfloat]{revtex4-1}{Deferred float stuck}
+\WarningFilter[vspace]{revtex4-1}{Failed to recognize}
+\ActivateWarningFilters[pdftoc,rerun,labels,sfloat,dfloat,vspace]
 %https://journals.aas.org/aastexguide/
 \documentclass[twocolumn,trackchanges]{aastex63}
 % aastex styles include preprint, manuscript, twocolumn, and modern (by DFM) and
@@ -14,15 +23,6 @@
 \hypersetup{
     pdfcreator={Naor Movshovitz},
 }
-
-% Silence some nuisance warnings during prep
-\usepackage{silence}
-\WarningFilter[pdftoc]{hyperref}{Token not allowed in a PDF string}
-\WarningFilter[rerun]{rerunfilecheck}{}
-\WarningFilter[labels]{latex}{Label(s) may have changed.}
-\WarningFilter[sfloat]{latex}{A float is stuck}
-\WarningFilter[dfloat]{revtex4-1}{Deferred float stuck}
-\ActivateWarningFilters[pdftoc,rerun,labels,sfloat,dfloat]
 
 \begin{document}
 

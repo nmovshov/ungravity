@@ -2,10 +2,27 @@
 
 \section{A methods section}\label{sec:method}
 \subsection{Parameterization}\label{sec:params}
+
 Consider the density profiles of the three-layer Uranus and Neptune models of
-\citet{Nettelmann2013a}, shown in Figure~\ref{fig:N13_profs}. These profiles are
+\citet{Nettelmann2013b}, shown in Figure~\ref{fig:N13_profs}. These profiles are
 derived from models that solve the planetary structure equations for an assumed
 composition, using physical equations of state. Our goal is to find a suitable
 direct parameterization of density as a function of radius, $\rho(s)$, that is
 capable of capturing the profiles of Fig.~\ref{fig:N13_profs} as a subset and is
-otherwise as flexible as possible. 
+otherwise as flexible as possible. It is also important to keep the number of
+parameters small and, even more important, to minimize parameter correlations.
+The more parameters we use and the stronger the correlations between them, the
+longer it will take any sampling algorithm to adequately cover the sample space.
+
+With these requirements in mind, what are the important features of the curves
+in Fig.~\ref{fig:N13_profs} that we need to allow for? Each $\rho(s)$ curve is
+smooth and monotonic, except for two sharp discontinuities. In the physical
+models these discontinuities are ``built-in''; the models assume layers of
+homogeneous composition with sharp boundaries between them. Three-layer models
+thus have two density discontinuities, the implicit assumption being that
+regions of composition gradients of length scale below the model's resolution
+separate the layers. The smoothness of the $\rho(s)$ curve between these density
+``jumps'' suggests that the entire profile can be well-represented by a
+piecewise-polynomial function. Such a parameterization was used successfully in
+\citep{Movshovitz2020} to generate density profiles for Saturn, but here we
+would like to improve on the parameterization for two reasons.
