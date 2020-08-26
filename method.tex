@@ -25,4 +25,39 @@ separate the layers. The smoothness of the $\rho(s)$ curve between these density
 ``jumps'' suggests that the entire profile can be well-represented by a
 piecewise-polynomial function. Such a parameterization was used successfully in
 \citep{Movshovitz2020} to generate density profiles for Saturn, but here we
-would like to improve on the parameterization for two reasons.
+utilize an alternative parameterization that is superior to the
+piecewise-polynomial in two significant ways, both having to do with
+representing the density jumps.
+
+There are two important limitations to representing $\roofs$ with
+piecewise-polynomials. The first and more obvious is that this parameterization
+only allows for sharp density discontinuities, not gradual ones. There are two
+mathematical discontinuities (of the first kind) in every density profile, with
+parameters controlling their location, say fractions $z_1$ and $z_2$ of the
+planet's radius, and jump magnitude, say $\delta_1$ and $\delta_2$ in density
+units\footnote{For reasons of efficiency one may choose to use some one-to-one
+transformation of these parameters \citep[e.g.][Appendix B]{Movshovitz2020}, but
+their physical meaning remains.}. The jumps can merge ($z_1\to{}z_2$) or one or
+both may vanish ($\delta_i\to{0}$), but they cannot approximate a more gradual
+transition, a gradient region detectable on the scale of the model. These sharp
+density jumps are features of layered composition models and we want our
+parameterization to be able to reproduce them, but we would like it to have the
+flexibility to capture gradient regions as well, something that
+composition-based models have difficulty with.
+
+The second limitation of the piecewise-polynomial parameterization is a
+technical one, that becomes apparent when we try to use MCMC algorithms to
+sample from the parameters' joint posterior. It turns out that the parameters
+are very strongly correlated leading to very low mixing rate and impractically
+long convergence time. One way to mitigate this problem is to fix values of the
+parameters $z_1$ and $z_2$, obtain their marginal distributions by sampling the
+other parameter values under their conditional probability, and repeat the
+process for a range of reasonable values for $z_i$. A sample from the full
+posterior can be created by drawing from the marginal probabilities, in
+proportion to their relative likelihoods. While this approach provides a working
+method, it is more cumbersome and time consuming. Worse, the additional step of
+combining the marginals into a single posterior involves the difficult task of
+calculating, at least approximately, the \emph{posterior odds} ratio (also
+called the Bayes factor or the evidence integral or, simply, the evidence).
+While this is a common and well-studied task, it still has no generally agreed
+upon best method. It would be better if we didn't have to go through this step.
