@@ -61,3 +61,47 @@ calculating, at least approximately, the \emph{posterior odds} ratio (also
 called the Bayes factor or the evidence integral or, simply, the evidence).
 While this is a common and well-studied task, it still has no generally agreed
 upon best method. It would be better if we didn't have to go through this step.
+
+Our alternative parameterization represents $\roofs$ with a single continuous
+and continuously differentiable function:
+\begin{multline}\label{eq:ppwd}
+\roofz = \rho(s/\rem) = \sum_{n=2}^{8}a_n(z^n - 1) + \rho_0 + \\
+\sum_{n=1}^{2}\frac{\sigma_n}{\pi}\Bigl(\frac{\pi}{2} +
+\arctan\bigl(-\nu_n(z - z_n)\bigr)\Bigr).
+\end{multline}
+The first line is a degree-8 polynomial in $z=s/\rem$. It is constrained to have
+a vanishing derivative at $z=0$ and to pass through the point $(1,\rho_0)$.
+Since we reference our $J$ values to the 1-bar surface we take
+$\rho_0=\rho\sub{1bar}$ to be the 1-bar density. For Uranus
+$\rho\sub{1bar,U}=0.367\unit{kg/m^3}$ and for Neptune
+$\rho\sub{1bar,N}=0.387\unit{kg/m^3}$, but it is important to remember that
+these nominal values do not come from direct measurements. They are derived by
+applying the ideal gas law to a protosolar mix of hydrogen and helium at a
+temperature $T\sub{1bar}$, which itself is inferred from analysis of radio
+occultation data from the Voyager 2 mission \citep{Lindal1992}. \edit1{Jonathan
+did I get that right?} In section~\ref{sec:results} we compare posterior
+distributions of density profiles obtained by taking $\rho_0$ to be constant
+with those obtained by treating it as a regular sampled parameter.
+
+The second line in eq.~\eqref{eq:ppwd} is a parameterization of two potential
+density jumps, overlain on top of the polynomial. The parameter $z_i$ define the
+location (in normalized radius) of the center of the ``jump''. A density
+increase of $\sigma_i$ (in density units) is applied asymptotically around this
+point, the width being controlled by the non-dimensional sharpness parameter
+$\nu_i$. The jump can be made arbitrarily sharp to resemble a discontinuity like
+the ones in Fig.~\ref{fig:N13_profs} by increasing the value of $\nu_i$.
+Conversely, small values of $\nu_i$ result in smooth, gradual density increase,
+indistinguishable from the background polynomial.
+
+The number of parameters required to completely define the density profile is 13
+(if we take $\rho_0$ to be constant). A degree-8 polynomial with two boundary
+conditions takes 7 parameters, and two potential density jumps take three
+parameters each (location, scale, and sharpness). This is comparable to the
+piecewise-polynomial parameterization. The advantage is not in the number of
+parameters but in their correlations. The polynomial-plus-atan parameters are
+less strongly correlated, meaning a small change in one parameter while keeping
+the other parameters fixed results in a smaller overall change in the density
+profile. This significantly improves the behavior of the sampling algorithm,
+which nonetheless remains a computationally expensive operation. Equally
+important, this parameterization is significantly more flexible in treatment of
+possible density jumps, allowing for one or both to be either sharp or gradual.
