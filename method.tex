@@ -1,7 +1,48 @@
 %!TEX root = ./main.tex
 
-\section{A methods section}\label{sec:method}
-\subsection{Parameterization}\label{sec:params}
+\section{Experimental method}\label{sec:method}
+
+\subsection{Overview}\label{sec:overview}
+In order to evaluate the potential of precise measurements of the gravity fields
+to improve our knowledge of the interiors of the ice giants we generate samples
+of interior density profiles that are constrained in different ways. By
+comparing the range of density values attained by each sample we get an idea of
+the ``constraining power'' of the observable quantity that guided the sampling.
+
+Concretely, we start with a sample of density profiles with no knowledge of the
+gravity field at all, to use as a baseline for comparison. Even without gravity,
+the space of allowed $\roofs$ curves is already strongly constrained by basic
+physics. Trivially, $\roofs$ must be monotonic strictly decreasing with $s$ and
+its integral between $s=0$ and $s=\rem$ should match the planet's mass within
+observable uncertainty. The relationship between pressure and density in
+hydrostatic equilibrium also implies $\lim_{s\to{0+}}d\rho/ds=0$. By themselves
+these conditions only restrict the shape of the $\roofs$ curve, not its scale,
+but we can constrain the by putting reasonable limits on the density at both the
+surface and the center of the planet.
+
+On the surface, which in our models we take to mean the 1-bar surface, a density
+can be estimated, indirectly, by applying the ideal gas law to a protosolar mix
+of hydrogen and helium at the observed temperature, $T\sub{1bar}$. This leads to
+a nominal value of $\rho\sub{1bar,U}=0.367\unit{kg/m^3}$ for Uranus, and for
+Neptune $\rho\sub{1bar,N}=0.387\unit{kg/m^3}$. The 1bar-temperature itself is
+not a direct measurement. It is inferred from analysis of radio occultation data
+from the Voyager 2 mission \citep{Lindal1992}, and includes uncertainty of a few
+degrees in each direction. \note{Jonathan did I get that right?} Combining the
+uncertainty from temperature and composition, we should allow some ``play'' in
+the 1-bar surface density, rather than treat it as a strict boundary condition.
+We can do this easily by including it as a sampled variable with an appropriate
+prior (appendix~\ref{sec:chains}).
+
+The density at the center of the planet, of course, is not directly available.
+But we can set a reasonable upper bound value by considering the order of
+magnitude of the central pressure. We set the upper limit for both planets at
+$20,000\unit{kg/m^3}$, comfortably above the density of pure rock at
+${50}\unit{Mbar}$. The values used for these baseline models are summarized in
+Table~\ref{tab:observables}.
+
+\input{./table1}
+
+\subsection{Parameterization of the density profiles}\label{sec:params}
 
 Consider the density profiles of the three-layer Uranus and Neptune models of
 \citet{Nettelmann2013b}, shown in Figure~\ref{fig:N13_profs}. These profiles are
@@ -78,30 +119,44 @@ $\rho\sub{1bar,N}=0.387\unit{kg/m^3}$, but it is important to remember that
 these nominal values do not come from direct measurements. They are derived by
 applying the ideal gas law to a protosolar mix of hydrogen and helium at a
 temperature $T\sub{1bar}$, which itself is inferred from analysis of radio
-occultation data from the Voyager 2 mission \citep{Lindal1992}. \edit1{Jonathan
+occultation data from the Voyager 2 mission \citep{Lindal1992}. \note{Jonathan
 did I get that right?} In section~\ref{sec:results} we compare posterior
 distributions of density profiles obtained by taking $\rho_0$ to be constant
 with those obtained by treating it as a regular sampled parameter.
 
-The second line in eq.~\eqref{eq:ppwd} is a parameterization of two potential
-density jumps, overlain on top of the polynomial. The parameter $z_i$ define the
-location (in normalized radius) of the center of the ``jump''. A density
-increase of $\sigma_i$ (in density units) is applied asymptotically around this
+The second line in eq.~\eqref{eq:ppwd} is a parameterization of possible density
+jumps, overlain on top of the polynomial. In this version of the
+parameterization we allow up to two such jumps. The parameter $z_1$ defines the
+location (in normalized radius) of the center of the inner one. A density
+increase of $\sigma_1$ (in density units) is applied asymptotically around this
 point, the width being controlled by the non-dimensional sharpness parameter
-$\nu_i$. The jump can be made arbitrarily sharp to resemble a discontinuity like
-the ones in Fig.~\ref{fig:N13_profs} by increasing the value of $\nu_i$.
-Conversely, small values of $\nu_i$ result in smooth, gradual density increase,
-indistinguishable from the background polynomial.
+$\nu_1$. The jump can be made arbitrarily sharp to resemble a discontinuity like
+the ones in Fig.~\ref{fig:N13_profs} by increasing the value of $\nu_1$.
+Conversely, small values of $\nu_1$ result in smooth, gradual density increase,
+indistinguishable from the background polynomial. The location, scale, and
+sharpness of the outer density jump are similarly determined by $z_2$,
+$\sigma_2$, and $\nu_2$, respectively.
 
-The number of parameters required to completely define the density profile is 13
-(if we take $\rho_0$ to be constant). A degree-8 polynomial with two boundary
-conditions takes 7 parameters, and two potential density jumps take three
-parameters each (location, scale, and sharpness). This is comparable to the
-piecewise-polynomial parameterization. The advantage is not in the number of
-parameters but in their correlations. The polynomial-plus-atan parameters are
-less strongly correlated, meaning a small change in one parameter while keeping
-the other parameters fixed results in a smaller overall change in the density
-profile. This significantly improves the behavior of the sampling algorithm,
-which nonetheless remains a computationally expensive operation. Equally
-important, this parameterization is significantly more flexible in treatment of
-possible density jumps, allowing for one or both to be either sharp or gradual.
+As given in eq.~\eqref{eq:ppwd} the number of parameters required to completely
+define the density profile is 13 (if we take $\rho_0$ to be constant). A
+degree-8 polynomial with two boundary conditions takes 7 parameters, and two
+potential density jumps take three parameters each (location, scale, and
+sharpness). Of course this polynomial-plus-arctan parameterization can be made
+even more flexible, by increasing the polynomial degree (we explain in
+appendix~\ref{sec:polyplanets} why we use a degree-8 polynomials) and/or adding
+more arctan terms. But the advantages of added flexibility must be carefully
+weighted against the cost of increasing the dimensionality of the sample space.
+
+As it is, sampling from the 13-dimensional, polynomial-plus-atan parameter space
+is computationally expensive operation, although much less so than with the
+piecewise-polynomial parameterization. The advantage comes not from the number
+of parameters, which is similar in both, but from the weaker parameter
+correlations. The polynomial-plus-atan parameters are less strongly correlated,
+meaning a small change in one parameter while keeping the other parameters fixed
+results in a smaller overall change in the density profile. This significantly
+improves the behavior of the sampling algorithm.
+
+\subsection{Sampling procedure}\label{sec:mcmc}
+To draw a sample of $\roofs$ profiles for each planet we run the ensemble
+sampler of the \code{emcee} Python package \citep{Foreman-Mackey2013} which
+implements the parallel stretch-move algorithm of \citet{Goodman2010}.
