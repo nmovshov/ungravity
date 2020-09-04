@@ -14,27 +14,27 @@ gravity field at all, to use as a baseline for comparison. Even without gravity,
 the space of allowed $\roofs$ curves is already strongly constrained by basic
 physics. Trivially, $\roofs$ must be monotonic strictly decreasing with $s$ and
 its integral between $s=0$ and $s=\rem$ should match the planet's mass within
-observable uncertainty. The relationship between pressure and density in
-hydrostatic equilibrium also implies $\lim_{s\to{0+}}d\rho/ds=0$. By themselves
-these conditions only restrict the shape of the $\roofs$ curve, not its scale,
-but we can constrain the by putting reasonable limits on the density at both the
-surface and the center of the planet.
+observable uncertainty. Additionally, the relationship between pressure and
+density in hydrostatic equilibrium implies $\lim_{s\to{0+}}d\rho/ds=0$. By
+themselves these conditions only restrict the shape of the $\roofs$ curve, not
+its scale, but we can constrain the scale by putting reasonable limits on the
+density at both the surface and the center of the planet.
 
 On the surface, which in our models we take to mean the 1-bar surface, a density
 can be estimated, indirectly, by applying the ideal gas law to a protosolar mix
 of hydrogen and helium at the observed temperature, $T\sub{1bar}$. This leads to
 a nominal value of $\rho\sub{1bar,U}=0.367\unit{kg/m^3}$ for Uranus, and for
-Neptune $\rho\sub{1bar,N}=0.387\unit{kg/m^3}$. The 1bar-temperature itself is
+Neptune $\rho\sub{1bar,N}=0.387\unit{kg/m^3}$. The 1-bar temperature itself is
 not a direct measurement. It is inferred from analysis of radio occultation data
 from the Voyager 2 mission \citep{Lindal1992}, and includes uncertainty of a few
 degrees in each direction. \note{Jonathan did I get that right?} Combining the
-uncertainty from temperature and composition, we should allow some ``play'' in
+uncertainties from temperature and composition, we should allow some ``play'' in
 the 1-bar surface density, rather than treat it as a strict boundary condition.
 We can do this easily by including it as a sampled variable with an appropriate
-prior (appendix~\ref{sec:chains}).
+prior (sec.~\ref{sec:mcmc} and appendix~\ref{sec:chains}).
 
 The density at the center of the planet, of course, is not directly available.
-But we can set a reasonable upper bound value by considering the order of
+We can estimate a reasonable upper bound value by considering the order of
 magnitude of the central pressure. We set the upper limit for both planets at
 $20,000\unit{kg/m^3}$, comfortably above the density of pure rock at
 ${50}\unit{Mbar}$. The values used for these baseline models are summarized in
@@ -45,13 +45,18 @@ Table~\ref{tab:observables}.
 There are several ways that we can constrain the interior density profiles
 further by using additional information about the planets. The two main ones
 which we examine in this work are (1) including information about the gravity
-field and (2) directly constraining a better-understood part of the planet in
+field and (2) directly constraining a better-understood part of the planet, in
 order to indirectly constrain the rest of its density profile. These methods can
 be used individually or together, and an understanding of their potential
 constraining power will be important when evaluating the costs and benefits of a
 future mission to the outer planets.
 
-First the gravity.
+First the gravity. Currently, approximate determination of the gravity fields of
+Neptune and Uranus comes form a combination of ground based astrometry and radio
+data from both \emph{Voyager} missions
+\citep[][and references therein]{Jacobson2009,Jacobson2014}. Gravity harmonics
+$J_2$ and $J_4$ are available, with significant uncertainty, for both planets.
+\note{continue here}
 
 \subsection{Parameterization of the density profiles}\label{sec:params}
 
