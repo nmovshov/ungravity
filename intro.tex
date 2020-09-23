@@ -1,7 +1,57 @@
 %!TEX root = ./main.tex
 
 \section{Introduction}\label{sec:intro}
-To be filled.
+The gravity field of a giant planet is perhaps our best window into its interior
+structure and composition. Obtaining gravity data is no simple task. Rough
+estimates can be deduced form ground-based observations of natural satellites,
+but precise measurements come from tracking radio signals from probes sent to
+the outer solar system to orbit, or at least fly by these worlds. Turning the
+hard-won gravity data into predictions about a planet's interior is also not a
+straightforward task. There is no simple inversion; the usual process involves
+creating models of the planet's interior and making claims about features of the
+planet we are interested in, for example the existence and size of a solid core,
+based on how well the calculated gravity of model planets with such features
+matches the observed gravity if the real planet. What may not be well
+appreciated outside the subset of researchers who routinely work with these
+interior models are the host of assumptions that go into them, making virtually
+every inference about a giant planet's structure strongly model dependent.
+
+Physical interior models try to create a self-consistent description of the
+composition, density, pressure, and temperature, at every point inside the
+planet. Gravity comes in with the requirement of hydrostatic equilibrium,
+connecting the pressure $P$ (actually its gradient) and density $\rho$ at every
+point. In a self-consistent model these quantities are also related via a
+thermodynamic equation of state (EOS) which also requires knowledge, at every
+point, of temperature and composition. The temperature can be calculated
+self consistently following equations of heat transfer, leading to
+time-dependent colling models, or a static temperature (or, equivalently,
+entropy) structure can be pre-calculated and used throughout. Composition,
+however, cannot be calculated; it must be stipulated.
+
+And therein lies the rub: the model must assume the very thing it is supposed to
+infer. To be sure, there are some very good assumptions that one can make. For
+example, if the target planet is a gas giant we may assume that, in a large
+fraction of the volume of the interior the dominant species is a mix of hydrogen
+and helium. But in what proportion? This should be a model parameter, call it
+$Y$; more precisely $Y(r)$ because in principle it should be allowed to change
+with distance from the center, $r$. In the case of the ice giants, on the other
+hand, the dominant species is not so easy to guess. And of course, the dominant
+species is not the only species. Some of the most important questions about
+planet formation that are perhaps the main motivation for the model in the first
+place depend most strongly on the inferred content of heavier elements. Make it
+a model parameter, $Z(r)$, under the (sometimes unspoken) assumption that the
+outcome is not overly sensitive to exactly \emph{which} heavy element we will
+use in the model.
+
+In fact, this hypothetical model is already much too complex. To resolve the
+interior to a meaningful degree requires discretizing the continuous variables
+on a fine grid in $r$, with at least hundreds and preferably thousands of grid
+points, resulting in thousands of model parameters and an
+impracticable\footnote{Or is it? It may be the brute computational force is up
+to the challenge. But this is an idea for another time.} task. Some very strong
+simplifying assumptions are need. The most important one is the assumption of
+some kind of layering.
+
 
 \begin{figure}[tb!]
 \centering
