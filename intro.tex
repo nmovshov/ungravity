@@ -4,59 +4,102 @@
 The gravity field of a giant planet is perhaps our best window into its interior
 structure and composition. Obtaining gravity data is no simple task. Rough
 estimates can be deduced form ground-based observations of natural satellites,
-but precise measurements come from tracking radio signals from probes sent to
-the outer solar system to orbit, or at least fly by these worlds. Turning the
+but precise values must come from tracking radio signals from probes sent to the
+outer solar system to orbit, or at least fly by these worlds. Turning the
 hard-won gravity data into predictions about a planet's interior is also not a
 straightforward task. There is no simple inversion; the usual process involves
 creating models of the planet's interior and making claims about features of the
 planet we are interested in, for example the existence and size of a solid core,
 based on how well the calculated gravity of model planets with such features
-matches the observed gravity if the real planet. What may not be well
+matches the observed gravity of the real planet. What may not be well
 appreciated outside the subset of researchers who routinely work with these
 interior models are the host of assumptions that go into them, making virtually
 every inference about a giant planet's structure strongly model dependent.
 
 Physical interior models try to create a self-consistent description of the
 composition, density, pressure, and temperature, at every point inside the
-planet. Gravity comes in with the requirement of hydrostatic equilibrium,
-connecting the pressure $P$ (actually its gradient) and density $\rho$ at every
-point. In a self-consistent model these quantities are also related via a
+planet. Gravity comes into the equation from the requirement of hydrostatic
+equilibrium, connecting the pressure $P$ (really its gradient) and density
+$\rho$ at every point. Hydrostatic equilibrium also allows us to use a one
+dimensional structure, $\roofs$ and $\pofs$, where $s$ is the mean (volume
+equivalently) radius of a surface of constant density and pressure. Once a
+self-consistent $\roofs$ is determined, it can be integrated to yield a total
+planetary mass, radius, and external gravity field (the last one being a
+non-trivial calculation in the case of a rotating planet) which can be compared
+with observed values to judge the model's overall likelihood.
+
+In a self-consistent model the pressure and density are also related via a
 thermodynamic equation of state (EOS) which also requires knowledge, at every
-point, of temperature and composition. The temperature can be calculated
-self consistently following equations of heat transfer, leading to
-time-dependent colling models, or a static temperature (or, equivalently,
-entropy) structure can be pre-calculated and used throughout. Composition,
-however, cannot be calculated; it must be stipulated.
+point, of temperature and composition. The temperature can be calculated self
+consistently, following equations of heat transfer, leading to time-dependent
+cooling models. Alternatively a static temperature (or, equivalently, entropy)
+structure can be pre-calculated and used throughout. Composition, however,
+cannot be calculated; it must be stipulated.
 
 And therein lies the rub: the model must assume the very thing it is supposed to
 infer. To be sure, there are some very good assumptions that one can make. For
 example, if the target planet is a gas giant we may assume that, in a large
-fraction of the volume of the interior the dominant species is a mix of hydrogen
-and helium. But in what proportion? This should be a model parameter, call it
-$Y$; more precisely $Y(r)$ because in principle it should be allowed to change
-with distance from the center, $r$. In the case of the ice giants, on the other
-hand, the dominant species is not so easy to guess. And of course, the dominant
-species is not the only species. Some of the most important questions about
-planet formation that are perhaps the main motivation for the model in the first
-place depend most strongly on the inferred content of heavier elements. Make it
-a model parameter, $Z(r)$, under the (sometimes unspoken) assumption that the
-outcome is not overly sensitive to exactly \emph{which} heavy element we will
-use in the model.
+fraction of the volume of the interior, the dominant species is a mix of
+hydrogen and helium. But in what proportion? This should be a model parameter,
+call it $Y$, or more precisely $Y(s)$ because in principle it should be allowed
+to change with distance from the center. In the case of the ice giants, on the
+other hand, the dominant species is not so easy to guess. And of course, the
+dominant species is not the only species. Some of the most important questions
+about planet formation (that are perhaps the main motivation for the model in
+the first place) depend most strongly on the inferred content of heavier
+elements. Make it a model parameter too, $Z(s)$, under the (sometimes unspoken)
+assumption that the outcome is not overly sensitive to exactly \emph{which}
+heavy element we will use in the model.
 
 In fact, this hypothetical model is already much too complex. To resolve the
 interior to a meaningful degree requires discretizing the continuous variables
-on a fine grid in $r$, with at least hundreds and preferably thousands of grid
+on a fine grid in $s$, with at least hundreds and preferably thousands of grid
 points, resulting in thousands of model parameters and an
-impracticable\footnote{Or is it? It may be the brute computational force is up
+impracticable\footnote{Or is it? It may be that brute computational force is up
 to the challenge. But this is an idea for another time.} task. Some very strong
-simplifying assumptions are need. The most important one is the assumption of
+simplifying assumptions are needed. The most important one is the assumption of
 some kind of layering.
 
+The most common class of models, for both the gas giants and ice giants, has for
+a long time been the three-layer model. The planet is assumed to consist of
+radial regions, each of homogeneous composition. This assumption is made partly
+for computational expediency and partly out sound physical reasoning, the latter
+being that thermodynamics supports, under some reasonable conditions, the
+existence of fully convective regions, with boundaries between them that resist
+mixing. Of course, that thermodynamics supports such configurations is no proof
+that these are the only possible ones. Modelers have been gradually increasing
+the sophistication of layered-composition models in various ways, and will no
+doubt continue to do so, while still retaining the basic paradigm.
+Figure~\ref{fig:N13_profs} shows what density profiles deriving from such models
+of Uranus and Neptune \citep{Nettelmann2013b} may look like; the three-layer
+structure is clearly visible.
 
 \begin{figure}[tb!]
 \centering
 \plotone{N13_profiles}
-\caption{Density profiles of the three-layer models of \citet{Nettelmann2013b},
-replotted from their data.}
+\caption{Density profiles $\rho(s)$, of the three-layer models of 
+\citet{Nettelmann2013b}, replotted from their data. $s$ is the mean (volume
+equivalent) radius of a surface of constant density, which by hydrostatic
+equilibrium must also be a surface of constant pressure and potential; $s_0$ is
+the mean radius of the 1-bar surface.}
 \label{fig:N13_profs}
 \end{figure}
+
+An alternative approach that has been used for a long time now is to create
+so-called \emph{empirical} models. Rather than parameterize the planet's
+composition and then solve for the pressure and density structure, these models
+parameterize the structure directly and make inferences about the composition
+from the resulting models. For example, some models may assign a synthetic (and
+simple) pressure-density relation to one or more regions of the planet. A
+popular choice is a combination of one or more polytropic regions, where
+$P(r)=K\rho(s)^{1+\frac{1}{n}}$, and perhaps a region of constant density,
+$\rho(r)=\rho_c$. A synthetic pressure-density relation can be used just like a
+physical EOS to derive self-consistent equilibrium shape and density profiles. A
+three-layer structure like those shown in fig.~\ref{fig:N13_profs} can be
+approximated by using three different polytropes in three radial regions.
+
+The density profile can also be parameterized directly, and this is our
+preferred approach. A parametric mathematical representation of a curve is
+chosen, mapping a vector of parameter values $\V{x}\in{\mathbb{R}^n}$ (hopefully
+$n$ is not too large) to a density profile $\roofs$ and thereby, through
+hydrostatic equilibrium, to a self-consistent interior structure.
