@@ -102,4 +102,49 @@ The density profile can also be parameterized directly, and this is our
 preferred approach. A parametric mathematical representation of a curve is
 chosen, mapping a vector of parameter values $\V{x}\in{\mathbb{R}^n}$ (hopefully
 $n$ is not too large) to a density profile $\roofs$ and thereby, through
-hydrostatic equilibrium, to a self-consistent interior structure.
+hydrostatic equilibrium, to a self-consistent interior structure. The advantage
+of being entirely divorced from an assumed equation of state, real or synthetic,
+is that density profiles representing both layered composition as well as
+continuous composition are representable with the same model. The disadvantage
+is that without an EOS, real or synthetic, to guide us, it is harder to know how
+to interpret the resulting density profile.
+
+Regardless of how a model planet is constructed, with a physical EOS, a
+synthetic EOS, or a synthetic $\roofs$, there remains the problem of degeneracy
+of solutions. The problem is, simply, that multiple models can be constructed
+that all match the measured gravity field to within a specified uncertainty. In
+fact there are infinitely many such models, covering an unknown region of
+parameter space. When modelers claim to constrain some desired property of the
+planet, for example if they say that the heavy element content of the planet is
+found to be between some upper and lower bounds, what they mean is that, given
+their chosen model design, no solutions were found with heavy element content
+outside those bounds. that match the gravity measurement to withing some
+tolerance. It is not known how much of this constraint is due to the measured or
+observed properties of the planet and how much is due to the assumptions built
+into the model, or even to incomplete exploration of the model parameter space.
+
+This is the main question we try to address in this work. Focusing on Uranus and
+Neptune as the target planets, we choose a parameterization, designed for
+maximum flexibility, and a sampling method, designed for maximum coverage, and
+generate representative random samples of $\roofs$ from several different
+distributions, each constrained by one or a combination of observable planetary
+properties. Concretely, we constrain the $\roofs$ distributions by: The planet's
+mass and radius; The planet's gravity coefficients $J_2$ and $J_4$, with
+currently estimated uncertainty; The planet's gravity coefficients $J_2$, $J_4$,
+and $J_6$, hypothetically known to great precision; The above constraints plus a
+hypothetically well determined atmospheric density structure.
+
+We explain fully the methods of this experiment in sec.~\ref{sec:method}, give
+the results in sec.~\ref{sec:results}, and our conclusions in
+sec.~\ref{sec:discussion}.
+
+The focus on Neptune and Uranus is of course not a coincidence. The ice giants
+are of great interest to researchers who look to their interiors for answers to
+open questions in solar system formation. Compared with the gas giants, Jupiter
+and Saturn, the vital observables of the ice giants, including and especially
+their gravity fields and rotation periods, are much more poorly known. A future
+mission to these worlds with one of the goals being to obtain more precise
+measurements of their gravity fields would be extremely valuable, this is not in
+doubt. What is still unknown, however, is what would be the expected
+relationship between the precision of such measurements and our ability to
+translate them into better constraints of the planetary interiors.
